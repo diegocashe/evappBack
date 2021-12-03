@@ -22,6 +22,9 @@ Homework.init({
     title: { type: sequelize_1.DataTypes.STRING, allowNull: false },
     description: { type: sequelize_1.DataTypes.STRING, allowNull: false },
     limitDate: { type: sequelize_1.DataTypes.DATE, defaultValue: null },
-    percent: { type: sequelize_1.DataTypes.DOUBLE, allowNull: false }
+    percent: { type: sequelize_1.DataTypes.DOUBLE, allowNull: false },
+    base: { type: sequelize_1.DataTypes.DOUBLE, allowNull: false, defaultValue: 20 },
+    value: { type: sequelize_1.DataTypes.DOUBLE, defaultValue: null },
+    file: { type: sequelize_1.DataTypes.STRING, defaultValue: null }
 }, { sequelize: DbConnection_1.default });
 exports.default = Homework;

@@ -22,6 +22,6 @@ Lesson.init({
     name: { type: sequelize_1.DataTypes.STRING, allowNull: false },
     duration: { type: sequelize_1.DataTypes.STRING, defaultValue: '2 weeks' },
     description: { type: sequelize_1.DataTypes.STRING, defaultValue: null },
-    code: { type: sequelize_1.DataTypes.STRING, defaultValue: sequelize_1.DataTypes.UUID },
+    code: { type: sequelize_1.DataTypes.STRING, defaultValue: sequelize_1.DataTypes.UUIDV4 },
 }, { sequelize: DbConnection_1.default });
 exports.default = Lesson;

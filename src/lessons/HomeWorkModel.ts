@@ -4,17 +4,21 @@ import User from '../people/userModel';
 import Teacher from '../people/teacherModel';
 import Lesson from './LessonsModel';
 import LessonStudent from './LessonStudentModel';
+import { type } from 'os';
 
 interface HomeworkAtributtes {
     id: string,
     lessonStudentId:string,
     title:string,
     description:string,
+    value:number,
+    base:number,
     limitDate:Date,
-    percent:number
+    percent:number,
+    file:string
 }
 
-interface HomeworkCreationAttributes extends Optional<HomeworkAtributtes, "id"> { }
+interface HomeworkCreationAttributes extends Optional<HomeworkAtributtes, "id"|"value"|"file"> { }
 
 
 class Homework extends Model<HomeworkAtributtes, HomeworkCreationAttributes> implements HomeworkAtributtes {
@@ -24,6 +28,9 @@ class Homework extends Model<HomeworkAtributtes, HomeworkCreationAttributes> imp
     public limitDate!:Date;
     public lessonStudentId!: string;
     public percent!:number;
+    public base!: number;
+    public value!: number;
+    public file!: string;
 
     // timestamps!
     public readonly createdAt!: Date;
@@ -44,7 +51,10 @@ Homework.init(
         title:{type: DataTypes.STRING, allowNull:false},
         description:{type: DataTypes.STRING, allowNull:false},
         limitDate:{type: DataTypes.DATE, defaultValue:null},
-        percent:{type:DataTypes.DOUBLE, allowNull:false}
+        percent:{type:DataTypes.DOUBLE, allowNull:false},
+        base:{type:DataTypes.DOUBLE, allowNull:false, defaultValue:20},
+        value:{type:DataTypes.DOUBLE, defaultValue:null},
+        file:{type:DataTypes.STRING, defaultValue:null}
     },
     { sequelize }
 )

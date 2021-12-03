@@ -31,10 +31,12 @@ const AdminUser = {
     userType: 0,
 };
 const lesson = {
+    id: "f04c2b28-da12-4fe0-83c5-df8f51633af9",
     name: 'ASP Learning',
     duration: '2 meses',
     description: 'aprender asp. net de la manera mas sencilla e interactiva posible',
     teacherId: null,
+    code: '00000'
 };
 const studensMock = [
     {
@@ -78,14 +80,16 @@ const homeworkMock = [
         title: 'Evaluacion I',
         description: 'Suba un ejercicio utilizando los tipos de datos',
         limitDate: new Date('11/25/2021'),
-        percent: 10
+        percent: 10,
+        base: 20
     },
     {
         lessonStudentId: null,
         title: 'Evaluacion II',
         description: 'Suba un ejercicio utilizando las estructuras condicionales',
         limitDate: new Date('11/29/2021'),
-        percent: 10
+        percent: 10,
+        base: 20
     },
 ];
 // sincronizo la base de datos.
@@ -100,7 +104,7 @@ const syncDataBase = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield DbConnection_1.default.sync({ force: true });
         const admin = yield userModel_1.default.create(AdminUser);
-        const teacher = yield teacherModel_1.default.create({ userId: admin.id });
+        const teacher = yield teacherModel_1.default.create({ userId: admin.id, id: "e0e38270-2757-409b-b6c0-3cad6213b0b1" });
         const lessonCreated = yield LessonsModel_1.default.create(Object.assign(Object.assign({}, lesson), { teacherId: teacher.id }));
         const BulkUser = yield userModel_1.default.bulkCreate(studensMock);
         const studens = yield studentModel_1.default.bulkCreate(BulkUser.map(e => ({ userId: e.id })));

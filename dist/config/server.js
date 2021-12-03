@@ -10,6 +10,8 @@ const loginApi_1 = __importDefault(require("../auth/loginApi"));
 const signinAPI_1 = __importDefault(require("../auth/signinAPI"));
 const profileApi_1 = __importDefault(require("../people/profileApi"));
 const lessonsApi_1 = __importDefault(require("../lessons/lessonsApi"));
+const homeworkApi_1 = __importDefault(require("../lessons/homeworkApi"));
+const resumeApi_1 = __importDefault(require("../people/resumeApi"));
 // init
 const app = express_1.default();
 // settings 
@@ -24,4 +26,6 @@ app.use('/login', loginApi_1.default);
 app.use('/signin', signinAPI_1.default);
 app.use('/profile', profileApi_1.default);
 app.use('/lessons', lessonsApi_1.default);
+app.use('/homework', homeworkApi_1.default);
+app.use('/resume', resumeApi_1.default);
 exports.default = app;

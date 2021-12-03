@@ -43,7 +43,7 @@ Lesson.init(
         name: { type: DataTypes.STRING, allowNull: false },
         duration: { type: DataTypes.STRING, defaultValue: '2 weeks' },
         description: { type: DataTypes.STRING, defaultValue: null },
-        code: { type: DataTypes.STRING, defaultValue: DataTypes.UUID },
+        code: { type: DataTypes.STRING, defaultValue: DataTypes.UUIDV4 },
     },
     { sequelize }
 )

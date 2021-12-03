@@ -29,10 +29,12 @@ const AdminUser: UserData = {
 }
 
 const lesson = {
+    id:"f04c2b28-da12-4fe0-83c5-df8f51633af9",
     name: 'ASP Learning',
     duration: '2 meses',
     description: 'aprender asp. net de la manera mas sencilla e interactiva posible',
     teacherId: null,
+    code:'00000'
 }
 
 const studensMock = [
@@ -81,14 +83,16 @@ const homeworkMock = [
         title: 'Evaluacion I',
         description: 'Suba un ejercicio utilizando los tipos de datos',
         limitDate: new Date('11/25/2021'),
-        percent: 10
+        percent: 10,
+        base: 20
     },
     {
         lessonStudentId: null,
         title: 'Evaluacion II',
         description: 'Suba un ejercicio utilizando las estructuras condicionales',
         limitDate: new Date('11/29/2021'),
-        percent: 10
+        percent: 10,
+        base:20
     },
 ]
 
@@ -105,7 +109,7 @@ const syncDataBase = async () => {
     try {
         await sequelize.sync({ force: true });
         const admin = await User.create(AdminUser);
-        const teacher = await Teacher.create({ userId: admin.id });
+        const teacher = await Teacher.create({ userId: admin.id, id:"e0e38270-2757-409b-b6c0-3cad6213b0b1" });
         const lessonCreated = await Lesson.create({ ...lesson, teacherId: teacher.id });
         const BulkUser = await User.bulkCreate(studensMock);
         const studens = await Student.bulkCreate(BulkUser.map(e => ({ userId: e.id })))
